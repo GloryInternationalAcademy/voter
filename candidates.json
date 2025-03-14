@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "John Doe", "photo": "john.jpg", "post": "Head Prefect" },
+  { "id": 2, "name": "Jane Smith", "photo": "jane.jpg", "post": "Deputy Prefect" },
+  { "id": 3, "name": "Alice Johnson", "photo": "alice.jpg", "post": "Sports Captain" }
+]

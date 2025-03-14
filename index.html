@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Prefect Voting</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>School Prefect Voting</h1>
+    <div id="voterIdSection">
+      <label for="voterId">Enter Your Voter ID:</label>
+      <input type="text" id="voterId" placeholder="e.g., A1B2C3D4">
+      <button id="verifyVoterId">Verify</button>
+      <p id="voterIdMessage"></p>
+    </div>
+    <div id="votingSection" style="display: none;">
+      <h2>Vote for Your Candidates</h2>
+      <div id="candidates">
+        <!-- Candidates will be dynamically added here -->
+      </div>
+      <button id="submitVote">Submit Vote</button>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
