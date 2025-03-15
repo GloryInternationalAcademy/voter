@@ -75,18 +75,24 @@ submitVoteButton.addEventListener('click', () => {
     return;
   }
 
-  // Save the vote
-  votes.push({
-    voterId: currentVoterId,
-    candidateId: selectedCandidate.value,
-    timestamp: new Date().toISOString()
-  });
-  localStorage.setItem('votes', JSON.stringify(votes));
-
-  // Mark Voter ID as used
-  const voterIndex = voterIds.findIndex(v => v.voterId === currentVoterId);
-  voterIds[voterIndex].used = true;
-
-  alert('Thank you for voting!');
-  window.location.reload(); // Reset the page
+  if (confirm("Are you sure you want to submit your vote?")) {
+    // Trigger GitHub Actions to update voterIds.json
+    fetch("https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/dispatches", {
+      method: "POST",
+      headers: {
+        "Accept": "application/vnd.github.everest-preview+json",
+        "Authorization": "token YOUR_GITHUB_PAT"
+      },
+      body: JSON.stringify({
+        event_type: "update-voter-data",
+        client_payload: { voterId: currentVoterId }
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert("Thank you for voting! The data will be updated.");
+      setTimeout(() => window.location.reload(), 2000);
+    })
+    .catch(error => console.error("GitHub API Error:", error));
+  }
 });
